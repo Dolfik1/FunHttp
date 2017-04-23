@@ -9,7 +9,7 @@ To use the type, we first need to reference the library using `#r` (in an F# int
 #r "../../../bin/FunHttp.dll"
 open FunHttp
 ```
-##Sending simple requests
+## Sending simple requests
 To send a simple HTTP (GET) request that downloads a specified web page, you can use `Http.RequestString` and `Http.AsyncRequestString` with just a single parameter:
 
 ```F#
@@ -22,7 +22,7 @@ async { let! html = Http.AsyncRequestString("http://tomasp.net")
 |> Async.Start
 ```
 In the rest of the documentation, we focus on the `RequestString` method, because the use of `AsyncRequestString` is exactly the same.
-##Query parameters and headers
+## Query parameters and headers
 You can specify query parameters either by constructing an URL that includes the parameters (e.g. `http://...?test=foo&more=bar`) or you can pass them using the optional parameter `query`. The following example also explicitly specifies the GET method, but it will be set automatically for you if you omit it:
 ```F#
 Http.RequestString
@@ -51,7 +51,7 @@ Http.RequestString
     query   = [ "api_key", apiKey; "query", "batman" ],
     headers = [ Accept HttpContentTypes.Json ])
 ```
-##Getting extra information
+## Getting extra information
 Note that in the previous snippet, if you don't specify a valid API key, you'll get a (401) Unathorized error, and that will throw an exception. Unlike when using `WebRequest` directly, the exception message will still include the response content, so it's easier to debug in F# interactive when the server returns extra info.
 You can also opt out of the exception by specifying the `silentHttpErrors` parameter
 ```F#
@@ -71,7 +71,7 @@ response.Cookies
 response.ResponseUrl
 response.StatusCode
 ```
-##Sending request data
+## Sending request data
 If you want to create a POST request with HTTP POST data, you can specify the additional data in the `body` optional parameter. This parameter is of type `HttpRequestBody`, which is a discriminated union with three cases:
 
  - `TextRequest` for sending a string in the request body.
@@ -90,7 +90,7 @@ Http.RequestString
     headers = [ ContentType HttpContentTypes.Json ],
     body = TextRequest """ {"test": 42} """)
 ```
-##Maintaining cookies across requests
+## Maintaining cookies across requests
 If you want to maintain cookies between requests, you can specify the `cookieContainer` parameter. The following example will request the MSDN documentation for the `HttpRequest` class. It will return the code snippets in C# and not F#:
 ```F#
 // Build URL with documentation for a given class
@@ -120,7 +120,7 @@ let docInFSharp =
       cookieContainer = cc )
 docInFSharp.Contains "<a>F#</a>"
 ```
-##Requesting binary data
+## Requesting binary data
 The `RequestString` method will always return the response as a `string`, but if you use the `Request` method, it will return a `HttpResponseBody.Text` or a `HttpResponseBody.Binary` depending on the response `content-type` header:
 ```F#
 let logoUrl = "https://raw.github.com/fsharp/FSharp.Data/master/misc/logo.png"
@@ -130,7 +130,7 @@ match Http.Request(logoUrl).Body with
 | Binary bytes -> 
     printfn "Got %d bytes of binary content" bytes.Length
 ```
-##Customizing the HTTP request
+## Customizing the HTTP request
 For the cases where you need something not natively provided by the library, you can use the `customizeHttpRequest` parameter, which expects a function that transforms an `HttpWebRequest`.
 
 As an example, let's say you want to add a client certificate to your request. To do that, you need to open the `X509Certificates` namespace from `System.Security.Cryptography`, create a `X509ClientCertificate2` value, and add it to the `ClientCertificates` list of the request.
