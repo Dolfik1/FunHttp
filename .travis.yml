@@ -2,7 +2,3 @@ language: fsharp
 mono: none
 dotnet: 1.0.1
 dist: trusty
-install:
-  - dotnet restore
-script:
-  - dotnet test FunHttp.Tests/FunHttp.Tests.fsproj
