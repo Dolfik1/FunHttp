@@ -1,5 +1,4 @@
 ![Travis build status](https://travis-ci.org/Dolfik1/FunHttp.svg?branch=master)
-
 [![NuGet](https://img.shields.io/nuget/v/FunHttp.svg)](https://www.nuget.org/packages/FunHttp/)
 # FunHttp is .Net Core port of F# HTTP Utilities
 
