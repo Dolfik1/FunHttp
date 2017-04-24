@@ -1,4 +1,6 @@
 ![Travis build status](https://travis-ci.org/Dolfik1/FunHttp.svg?branch=master)
+
+[![NuGet](https://img.shields.io/nuget/v/FunHttp.svg)](https://www.nuget.org/packages/FunHttp/)
 # FunHttp is .Net Core port of F# HTTP Utilities
 
 The .NET library provides a powerful API for creating and sending HTTP web requests. There is a simple `WebClient` type (see [MSDN](http://msdn.microsoft.com/en-us/library/system.net.webclient.aspx)) and a more flexible `HttpWebRequest` type (see [MSDN](http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx)). However, these two types are quite difficult to use if you want to quickly run a simple HTTP request and specify parameters such as method, HTTP POST data, or additional headers.
